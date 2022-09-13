@@ -1,5 +1,3 @@
-const { timeout } = require("../../playwright.config");
-
 class CreateEmployeeForm {
     constructor(page) {
         this.page = page;

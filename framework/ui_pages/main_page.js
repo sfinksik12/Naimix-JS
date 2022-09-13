@@ -11,4 +11,5 @@ class MainPage {
 
 }
 
+
 module.exports = {MainPage}
