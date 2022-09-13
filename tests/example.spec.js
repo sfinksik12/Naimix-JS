@@ -5,26 +5,28 @@ import { LoginPage } from '../framework/ui_pages/login_page';
 import { MainPage } from '../framework/ui_pages/main_page';
 import { CreateEmployeeForm } from '../framework/ui_pages/create_employee_tab';
 import { AuthenticationApi } from '../framework/api_pages/authentication';
-  
+import { GetCompanyUserInfo } from '../framework/api_pages/company_users';  
+
 
 test.beforeEach(async ({ page, request }) =>{
   const loginPage = new LoginPage(page);
   const mainPage = new MainPage(page);
-  const auth_api = new AuthenticationApi(request);
   
-  const token = await auth_api.api_auth_as(roles.AdminNaimix);
   await loginPage.login_as(roles.AdminNaimix);
   await mainPage.create_company_click();
 });
 
 
 employee.forEach(data => {
-  test(`get input_data ${data.lastname}`, async ({ page }) => {
+  test(`Create user ${data.lastname}`, async ({ page, request }) => {
     const employee_form = new CreateEmployeeForm(page);
+    const auth_api = new AuthenticationApi(request);
+    const token = await auth_api.api_auth_as(roles.AdminNaimix);
+    const user_info = new GetCompanyUserInfo(request);
     await employee_form.load_page();
     await employee_form.create_employee_click();
   
-    const input_data = await test.step(`get input_data ${data.inn}`, async () => {
+    const input_data = await test.step(`get inpit_data ${data.inn}`, async () => {
       return await employee_form.fill_fields(
         data.lastname, data.firstname, data.sername,
         data.snils, data.inn,
@@ -35,5 +37,7 @@ employee.forEach(data => {
     })
     await employee_form.click_add_user();
     console.log(input_data);
+
+    
   })
 })

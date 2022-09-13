@@ -1,9 +1,13 @@
+const { timeout } = require("../../playwright.config");
+
 class CreateEmployeeForm {
     constructor(page) {
         this.page = page;
         this.input_data = {};
         this.URL = 'https://nm-test.mmtr.ru/client-card/d4838625-5295-4122-8dba-210aa768a2c2/members-list';
         this.CREATE_NEW_EMPLOYEE_BTN = page.locator('text=Добавить сотрудника');
+
+        this.CLOSE_FILTER = page.locator('body > div.nm-page__vertical-filter.nm-page__vertical-filter_open.undefined > div > div.nm-page__vertical-filter-title > svg')
 
         this.LASTNAME = page.locator('[name=lastName]');
         this.NAME = page.locator('[name=firstName]');
@@ -23,7 +27,7 @@ class CreateEmployeeForm {
         this.REPEAT_PASSWORD = page.locator('[name=repeatPassword]');
 
         this.CANSEL = page.locator('button.apply-buttons__cancel.nm-button.nm-button_color-white.nm-button_size-xl');
-        this.ADD = page.locator('button.apply-buttons__submit');
+        this.ADD = "button.apply-buttons__submit"
       }
 
     async load_page() {
@@ -31,6 +35,7 @@ class CreateEmployeeForm {
     }
 
     async create_employee_click() {
+        await this.CLOSE_FILTER.click();
         await this.CREATE_NEW_EMPLOYEE_BTN.waitFor();
         await this.CREATE_NEW_EMPLOYEE_BTN.click();
     }
@@ -62,7 +67,8 @@ class CreateEmployeeForm {
     }
     
     async click_add_user() {
-
+        await this.page.evaluate(() => document.querySelector("button.apply-buttons__submit").click());
+        console.log(this.ADD)
     }
 
 }
