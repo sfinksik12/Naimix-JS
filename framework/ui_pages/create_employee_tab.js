@@ -5,7 +5,7 @@ class CreateEmployeeForm {
         this.URL = 'https://nm-test.mmtr.ru/client-card/d4838625-5295-4122-8dba-210aa768a2c2/members-list';
         this.CREATE_NEW_EMPLOYEE_BTN = page.locator('text=Добавить сотрудника');
 
-        this.CLOSE_FILTER = page.locator('body > div.nm-page__vertical-filter.nm-page__vertical-filter_open.undefined > div > div.nm-page__vertical-filter-title > svg')
+        this.CLOSE_FILTERS = page.locator('body > div.nm-page__vertical-filter.nm-page__vertical-filter_open.undefined > div > div.nm-page__vertical-filter-title > svg')
 
         this.LASTNAME = page.locator('[name=lastName]');
         this.NAME = page.locator('[name=firstName]');
@@ -32,9 +32,11 @@ class CreateEmployeeForm {
         await this.page.goto(this.URL);
     }
 
+    async close_filters() {
+        await this.CLOSE_FILTERS.click();
+    }
+
     async create_employee_click() {
-        await this.CLOSE_FILTER.click();
-        await this.CREATE_NEW_EMPLOYEE_BTN.waitFor();
         await this.CREATE_NEW_EMPLOYEE_BTN.click();
     }
 
@@ -66,7 +68,6 @@ class CreateEmployeeForm {
     
     async click_add_user() {
         await this.page.evaluate(() => document.querySelector("button.apply-buttons__submit").click());
-        console.log(this.ADD)
     }
 
 }

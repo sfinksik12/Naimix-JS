@@ -5,7 +5,7 @@ class AuthenticationApi {
         this.url = "https://nm-test.mmtr.ru/api/auth/login";
       }
 
-    async api_auth_as(auth_dict) {
+    async auth_as(auth_dict) {
         const response = await this.request.post(this.url, {
             data: {
               'login': auth_dict.login,

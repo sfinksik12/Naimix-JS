@@ -5,27 +5,33 @@ class GetCompanyUserInfo {
         this.url = "https://nm-test.mmtr.ru/api/clients/users/getPage";
       }
 
-    async get_info_by_fio_filter(token, lastname, firstname, sername) {
+    async get_by_fio_filter(token, lastname, firstname, sername) {
         const response = await this.request.post(this.url, {
             data: {
-                "clientId": "d4838625-5295-4122-8dba-210aa768a2c2",
-                "pageNum": 1,
-                "pageSize": 25,
-                "archiveFilter": False,
-                "fioSort": "asc",
-                "needToEnrichPhantomUsersByClientInfo": True,
-                "fioFilter": `${lastname}, ${firstname}, ${sername}`
+                clientId:"d4838625-5295-4122-8dba-210aa768a2c2",
+                pageNum: 1,
+                pageSize: 25,
+                archiveFilter: false,
+                fioSort: 'asc',
+                needToEnrichPhantomUsersByClientInfo: true, 
+                fioFilter: lastname + ' ' + firstname + ' ' + sername
             },
             headers: {
-                "Accept": "application/json;charset=UTF-8",
-                'Authorization': `${token}`,
-                'Content-Type': 'application/json;charset=UTF-8'
-            },
+                Authorization: `Bearer ${token}`
+            }
           });
         const json = await response.json();
-        console.log(json);
-    }
+        const data = json.clientUsers[0];
 
+        this.response_data = {
+          'lastname': data['lastName'],
+          'name': data['firstName'],
+          'sername': data['patronymic'],
+          'inn': data['inn'],
+          'email': data['email']
+        }
+        return this.response_data;
+    }
 }
 
 module.exports = {GetCompanyUserInfo}
