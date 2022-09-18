@@ -8,6 +8,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@faker-js/faker": "^7.5.0",
     "@playwright/test": "^1.25.1"
+  },
+  "dependencies": {
+    "chance": "^1.1.8"
   }
 }

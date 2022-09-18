@@ -1,3 +1,6 @@
+import { reformat_phone, reformat_snils } from '../helper/processing_text';
+
+
 class GetCompanyUserInfo {
     constructor(request) {
         this.request = request;
@@ -24,11 +27,9 @@ class GetCompanyUserInfo {
         const data = json.clientUsers[0];
 
         this.response_data = {
-          'lastname': data['lastName'],
-          'name': data['firstName'],
-          'sername': data['patronymic'],
-          'inn': data['inn'],
-          'email': data['email']
+          'lastname': data['lastName'], 'firstname': data['firstName'], 'sername': data['patronymic'],
+          'snils': reformat_snils(data['snils']), 'inn': data['inn'],
+          'phone': reformat_phone(data['phone']), 'email': data['email']
         }
         return this.response_data;
     }

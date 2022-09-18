@@ -60,14 +60,15 @@ class CreateEmployeeForm {
         await this.PHONE.fill(this.input_data['phone'] = phone);
         await this.EMAIL.fill(this.input_data['email'] = email);
 
-        await this.PASSWORD.fill(this.input_data['password'] = password);
-        await this.REPEAT_PASSWORD.fill(this.input_data['repeatPassword'] = repeatPassword);
+        await this.PASSWORD.fill(password);
+        await this.REPEAT_PASSWORD.fill(repeatPassword);
          
         return this.input_data;
     }
     
     async click_add_user() {
         await this.page.evaluate(() => document.querySelector("button.apply-buttons__submit").click());
+        await this.CREATE_NEW_EMPLOYEE_BTN.hover();
     }
 
 }
