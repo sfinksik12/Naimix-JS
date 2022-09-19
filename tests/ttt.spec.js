@@ -26,7 +26,7 @@ employee.forEach(data => {
       await app_ui.Create_Employee_Form.close_filters();
       await app_ui.Create_Employee_Form.create_employee_click();
     
-      const input_data = await test.step(`Get inpit_data: ${data.lastname}`, async () => {
+      const input_data = await test.step(`Get input_data by: ${data.lastname}`, async () => {
         return await app_ui.Create_Employee_Form.fill_fields(
           data.lastname, data.firstname, data.sername,
           data.snils, data.inn,
@@ -37,8 +37,8 @@ employee.forEach(data => {
     })
       await app_ui.Create_Employee_Form.click_add_user();
 
-      const response_data = await test.step(`Get response_data: ${data.lastname}`, async () => {
-        return await app_api.Get_Company_User_Info.get_by_fio_filter(token, data.lastname, data.firstname, data.sername);
+      const response_data = await test.step(`Get response_data by: ${data.lastname}`, async () => {
+        return await app_api.Get_Company_User_Info.by_fio_filter(token, data.lastname, data.firstname, data.sername);
     })
 // Assert
     expect(input_data).toEqual(response_data);
