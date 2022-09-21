@@ -6,6 +6,7 @@ class GetCompanyUserInfo {
       this.request = request;
       this.response_data = {};
       this.url = "https://nm-test.mmtr.ru/api/clients/users/getPage";
+      this.archive_user = "https://nm-test.mmtr.ru/api/clients/users/archive"
     }
 
   async all_users(token) {
@@ -23,7 +24,21 @@ class GetCompanyUserInfo {
       }
     });
     const json = await response.json();
-    const data = json.clientUsers;
+    return json.clientUsers.map(user => user.clientUserId);
+  }
+
+  async archive_all_users(token, clientUserId) {
+    const response = await this.request.put(this.archive_user, {
+      data: {
+          clientUserId: `${clientUserId}`,
+          clientId: "d4838625-5295-4122-8dba-210aa768a2c2",
+          archive: true
+    },
+      headers: {
+          Authorization: `Bearer ${token}`
+      }
+    });
+    console.log(response)
   }
 
   async by_fio_filter(token, lastname, firstname, sername) {

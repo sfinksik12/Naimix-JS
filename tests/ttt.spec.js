@@ -17,15 +17,14 @@ test.beforeEach(async ({ page, request }) =>{
 
     await app_ui.Login_Page.login_as(roles.AdminNaimix);
     await app_ui.Main_Page.create_company_click();
+    await app_ui.Create_Employee_Form.load_page();
+    await app_ui.Create_Employee_Form.close_filters();
+    await app_ui.Create_Employee_Form.create_employee_click();
 });
   
 // Act
 employee.forEach(data => {
-  test(`Create user: ${data.lastname} ${data.firstname} ${data.sername}`, async ({ }) => {
-      await app_ui.Create_Employee_Form.load_page();
-      await app_ui.Create_Employee_Form.close_filters();
-      await app_ui.Create_Employee_Form.create_employee_click();
-    
+  test(`Create user: ${data.lastname} ${data.firstname} ${data.sername}`, async ({ }) => {    
       const input_data = await test.step(`Get input_data by: ${data.lastname}`, async () => {
         return await app_ui.Create_Employee_Form.fill_fields(
           data.lastname, data.firstname, data.sername,
@@ -42,6 +41,5 @@ employee.forEach(data => {
     })
 // Assert
     expect(input_data).toEqual(response_data);
-
   })
 })
