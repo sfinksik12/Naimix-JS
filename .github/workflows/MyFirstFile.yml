@@ -20,7 +20,7 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test ddt_add_company_users.spec.js
       - name: Open HTML report
-        run: npx playwright show-report
+        run: npx playwright show-report name-of-my-extracted-playwright-report
       - uses: actions/upload-artifact@v2
         if: always()
         with:
