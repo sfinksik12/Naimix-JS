@@ -15,14 +15,12 @@ jobs:
           node-version: "14.x"
       - name: Install dependencies
         run: npm ci
+        
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       
-      - name: Run Playwright Tests        
-        continue-on-error: false
-        working-directory: testing       
-        run: |   
-          npx playwright test e2e --reporter=html --config playwright.config.js
+      - name: Run Playwright tests
+        run: npx playwright test ddt_add_company_users.spec.js
       
       - uses: actions/upload-artifact@v2
         if: always()
