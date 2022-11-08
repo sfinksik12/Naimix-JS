@@ -5,7 +5,7 @@ class CreateEmployeeForm {
         this.URL = 'https://nm-test.mmtr.ru/client-card/d4838625-5295-4122-8dba-210aa768a2c2/members-list';
         this.CREATE_NEW_EMPLOYEE_BTN = page.locator('text=Добавить сотрудника');
 
-        this.CLOSE_FILTERS = page.locator('body > div.nm-page__vertical-filter.nm-page__vertical-filter_open.undefined > div > div.nm-page__vertical-filter-title > svg')
+        this.CLOSE_FILTERS = page.locator('body > div.nm-page-vertical-filter.nm-page-vertical-filter_open > div > div.nm-page-vertical-filter__title > svg')
 
         this.LASTNAME = page.locator('[name=lastName]');
         this.NAME = page.locator('[name=firstName]');
