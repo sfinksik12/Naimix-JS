@@ -19,7 +19,7 @@ const config = {
   use: {
     viewport: { width: 1920, height: 1080 },
     actionTimeout: 0,
-    headless: false,  
+    headless: true,  
   },
 
 
