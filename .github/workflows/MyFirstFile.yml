@@ -1,0 +1,20 @@
+name: PlaywrightTests
+on:
+  push:
+    branches:
+    - master
+    
+    
+jobs:
+  my-test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Hello my Test
+      run: echo "Going my Test"
+      
+      
+  my-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Hello my Deploy
+      run: echo "Going my Deploy"
