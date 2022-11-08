@@ -17,10 +17,13 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-      - name: Run Playwright tests
-        run: npx playwright test ddt_add_company_users.spec.js
-      - name: Open HTML report
-        run: npx playwright show-report name-of-my-extracted-playwright-report
+      
+      - name: Run Playwright Tests        
+        continue-on-error: false
+        working-directory: testing       
+        run: |   
+          npx playwright test e2e --reporter=html --config playwright.config.js
+      
       - uses: actions/upload-artifact@v2
         if: always()
         with:
