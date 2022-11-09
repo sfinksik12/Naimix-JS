@@ -25,9 +25,9 @@ const config = {
 
   projects: [
     {
-      name: 'chrome',
+      name: 'chromium',
       use: {
-        channel: 'chrome',
+        channel: 'chromium',
       },
     },
   ],
