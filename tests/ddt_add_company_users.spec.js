@@ -11,7 +11,7 @@ let token;
 let users;
 
 
-test.beforeEach(async ({ page, request }) =>{
+test.beforeEach('Переход к форме создания сотрудника', async ({ page, request }) =>{
     app_ui = new AppUI(page);
     app_api = new AppAPI(request);
     token = await app_api.Authentication_Api.auth_as(roles.AdminNaimix);
@@ -23,6 +23,7 @@ test.beforeEach(async ({ page, request }) =>{
     await app_ui.Create_Employee_Form.create_employee_click();
 });
   
+
 // Act
 employee.forEach(data => {
   test(`Create user: ${data.lastname} ${data.firstname} ${data.sername}`, async ({ }) => {    
@@ -46,7 +47,7 @@ employee.forEach(data => {
 })
 
 
-test.afterAll(async () => {
+test.afterAll('Удаление всех созданных сотрудников', async () => {
   users = await app_api.Get_Company_User_Info.all_users(token);
 
   for (let i = 0; i < users.length; i++) {
