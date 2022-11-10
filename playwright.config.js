@@ -17,7 +17,7 @@ const config = {
   workers: process.env.CI ? 1 : undefined,
   reporter: [ ['html'] ],
   use: {
-    viewport: { width: 1910, height: 1080 },
+    viewport: { width: 1920, height: 1080 },
     actionTimeout: 0,
     headless: true,  
   },

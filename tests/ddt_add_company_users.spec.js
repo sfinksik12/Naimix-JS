@@ -8,6 +8,7 @@ import employee from '../framework/data/employee';
 let app_ui;
 let app_api;
 let token;
+let users;
 
 
 test.beforeEach(async ({ page, request }) =>{
@@ -43,3 +44,12 @@ employee.forEach(data => {
     expect(input_data).toEqual(response_data);
   })
 })
+
+
+test.afterAll(async () => {
+  users = await app_api.Get_Company_User_Info.all_users(token);
+
+  for (let i = 0; i < users.length; i++) {
+    await app_api.Get_Company_User_Info.archive_all_users(token, users[i]);
+  }
+});
