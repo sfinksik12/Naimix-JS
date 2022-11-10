@@ -23,7 +23,6 @@ test.beforeEach(async ({ page, request }) =>{
     await app_ui.Create_Employee_Form.create_employee_click();
 });
   
-
 // Act
 employee.forEach(data => {
   test(`Create user: ${data.lastname} ${data.firstname} ${data.sername}`, async ({ }) => {    
