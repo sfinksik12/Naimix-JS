@@ -11,7 +11,7 @@ let token;
 let users;
 
 
-test.beforeEach('Переход к форме создания сотрудника', async ({ page, request }) =>{
+test.beforeEach(async ({ page, request }) =>{
     app_ui = new AppUI(page);
     app_api = new AppAPI(request);
     token = await app_api.Authentication_Api.auth_as(roles.AdminNaimix);
@@ -47,7 +47,7 @@ employee.forEach(data => {
 })
 
 
-test.afterAll('Удаление всех созданных сотрудников', async () => {
+test.afterAll(async () => {
   users = await app_api.Get_Company_User_Info.all_users(token);
 
   for (let i = 0; i < users.length; i++) {
